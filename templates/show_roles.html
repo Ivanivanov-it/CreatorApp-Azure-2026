@@ -1,0 +1,8 @@
+
+
+<div class="mb-4">
+    <span class="fw-bold me-2">Roles:</span>
+    {% for role in roles %}
+        <span class="stat-badge stat-badge-role me-1">{{ role.role | lower | capfirst }}</span>
+    {% endfor %}
+</div>

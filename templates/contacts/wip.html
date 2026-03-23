@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} {{ page_title }}{% endblock %}
+
+{% block content %}
+<style>
+    body {
+        background-color: #1a1a2e; /* Dark background for game feel */
+        color: #e0e0e0; /* Light text for contrast */
+    }
+    .wip-container {
+        padding: 5rem 0;
+        text-align: center;
+    }
+    .wip-title {
+        font-size: 3.5rem;
+        color: #8be9fd; /* A vibrant, game-like blue */
+        margin-bottom: 1rem;
+        text-shadow: 0 0 10px rgba(139, 233, 253, 0.6);
+    }
+    .wip-subtitle {
+        font-size: 1.5rem;
+        color: #e0e0e0;
+        margin-bottom: 2rem;
+    }
+    .wip-text {
+        font-size: 1.1rem;
+        color: #b0b0c0;
+        margin-bottom: 3rem;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .btn-game-primary {
+        background-color: #8be9fd;
+        border-color: #8be9fd;
+        color: #1a1a2e;
+        padding: 0.75rem 2rem;
+        font-size: 1.25rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        border-radius: 0.3rem;
+        transition: all 0.3s ease;
+    }
+    .btn-game-primary:hover {
+        background-color: #67d0ed;
+        border-color: #67d0ed;
+        color: #1a1a2e;
+        box-shadow: 0 0 15px rgba(139, 233, 253, 0.8);
+        transform: translateY(-2px);
+    }
+</style>
+
+<div class="container wip-container">
+    <h1 class="wip-title">Transmission Interrupted!</h1>
+    <p class="wip-subtitle">This Section is Currently Undergoing Hyper-Space Construction.</p>
+    <p class="wip-text">
+        Our team of digital artisans is tirelessly crafting new features and content for this page.
+        Please bear with us as we bring exciting new dimensions to your gaming experience.
+        If you have urgent inquiries, or wish to report a cosmic anomaly, please visit our
+    </p>
+    <a href="{% url 'contacts:contact-us' %}" class="btn btn-game-primary btn-lg">Contact Galactic Command</a>
+</div>
+{% endblock %}

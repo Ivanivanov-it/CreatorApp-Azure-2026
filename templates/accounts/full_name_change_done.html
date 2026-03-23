@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Name Changed | CreatorApp{% endblock %}
+
+{% block content %}
+<style>
+    body {
+        background-color: #1a1a2e;
+        color: #e0e0e0;
+    }
+
+    .login-container {
+        padding-top: 5rem;
+        padding-bottom: 5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 70vh;
+    }
+
+    .card-game {
+        background-color: #2a2a4a;
+        border: 2px solid #4a4a6a;
+        color: #e0e0e0;
+        padding: 2.5rem;
+        border-radius: 12px;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+        width: 100%;
+        max-width: 450px;
+        transition: transform 0.3s ease, border-color 0.3s ease;
+        text-align: center;
+    }
+
+    .card-game:hover {
+        transform: scale(1.02);
+        border-color: #50fa7b; /* Success green border on hover */
+    }
+
+    .login-title {
+        color: #50fa7b; /* Success green */
+        font-size: 2.5rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        margin-bottom: 2rem;
+        text-shadow: 0 0 10px rgba(80, 250, 123, 0.3);
+    }
+
+    .success-text {
+        font-size: 1.2rem;
+        margin-bottom: 2.5rem;
+        color: #e0e0e0;
+        line-height: 1.6;
+    }
+
+    .btn-game-primary {
+        background-color: #ff79c6;
+        border: none;
+        color: white;
+        font-weight: bold;
+        padding: 1rem;
+        border-radius: 8px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(255, 121, 198, 0.3);
+        text-decoration: none;
+        display: block;
+        width: 100%;
+    }
+
+    .btn-game-primary:hover {
+        background-color: #ff92d0;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(255, 121, 198, 0.5);
+        color: white;
+    }
+
+    .icon-success {
+        font-size: 4rem;
+        color: #50fa7b;
+        margin-bottom: 1.5rem;
+    }
+</style>
+
+<div class="login-container">
+    <div class="card-game">
+        <div class="icon-success">
+            <i class="bi bi-person-check"></i>
+        </div>
+        <h2 class="login-title">Success!</h2>
+        <p class="success-text">
+            Your full name has been successfully updated. Your profile is now more accurate.
+        </p>
+        <div class="d-grid">
+            <a href="{% url 'account:profile' %}" class="btn btn-game-primary">Back to Profile</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Contact Us{% endblock %}
+
+{% block content %}
+<style>
+    body {
+        background-color: #1a1a2e; /* Dark background for game feel */
+        color: #e0e0e0; /* Light text for contrast */
+    }
+    .form-group {
+        margin-bottom: 1.5rem;
+        text-align: center; /* Center the label and help text */
+    }
+    .form-control {
+        background-color: #3a3a5a;
+        border: 1px solid #5a5a7a;
+        color: #e0e0e0;
+        max-width: 80%; /* Limit width to allow centering */
+        margin: 0 auto; /* Center the input field */
+    }
+    /* Specific width adjustments for email and content fields */
+    input[name="email"].form-control {
+        max-width: 90%; /* Make email field slightly bigger */
+    }
+    textarea[name="content"].form-control {
+        max-width: 95%; /* Make content field have bigger width */
+    }
+    .form-control::placeholder {
+        color: #b0b0c0;
+    }
+    .form-control:focus {
+        background-color: #4a4a6a;
+        border-color: #8be9fd;
+        box-shadow: 0 0 0 0.25rem rgba(139, 233, 253, 0.25);
+        color: #e0e0e0;
+    }
+    label {
+        color: #e0e0e0;
+        margin-bottom: 0.5rem;
+        display: block;
+    }
+    .text-help {
+        color: #b0b0c0;
+        font-size: 0.875em;
+        display: block; /* Ensure help text is on its own line */
+    }
+</style>
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-7">
+            <div class="card-game p-4 p-md-5">
+                <h2 class="section-title text-center mb-4">Get in Touch with the Architects of Creation!</h2>
+                <p class="lead text-center mb-5">
+                    Have a question about your legendary hero? A brilliant idea for a new monstrous enemy? Or perhaps
+                    you've encountered a glitch in the matrix of creation? Reach out to us, and our tireless team of
+                    digital deities will assist you!
+                </p>
+
+                <form method="post" novalidate>
+                    {% csrf_token %}
+
+                    {% if form.non_field_errors %}
+                        <div class="alert alert-danger" role="alert">
+                            {% for error in form.non_field_errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+
+                    {% for field in form %}
+                        <div class="form-group">
+                            {{ field.label_tag }}
+                            {{ field }}
+                            {% if field.help_text %}
+                                <small class="form-text text-help">{{ field.help_text }}</small>
+                            {% endif %}
+                            {% for error in field.errors %}
+                                <div class="alert alert-danger mt-1">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                    {% endfor %}
+
+                    <div class="text-center mt-4">
+                        <button type="submit" class="btn btn-game-primary btn-lg">Send Your Message into the Void</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

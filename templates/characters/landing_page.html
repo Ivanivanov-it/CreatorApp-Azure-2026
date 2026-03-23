@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    body {
+        background-color: #1a1a2e; /* Dark background for game feel */
+        color: #e0e0e0; /* Light text for contrast */
+    }
+</style>
+
+<div class="hero-section text-center d-flex align-items-center justify-content-center" style="background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('{% static "images/cover_image.png" %}') no-repeat center center; background-size: cover;">
+    <div class="container">
+        <h1 class="mb-4">Forge Your Legends. Conquer Your Foes.</h1>
+        <p class="lead">
+            Welcome to the ultimate battleground where epic characters and loyal partners come to life.
+            Craft unique heroes, train formidable allies, and challenge fierce enemies in thrilling turn-based combat.
+            Your adventure begins now!
+        </p>
+        <a href="{% url 'battle:character_selection' %}" class="btn btn-game-primary btn-lg mx-2">Challenge Enemies</a>
+        <a href="{% url 'contacts:about' %}" class="btn btn-game-secondary btn-lg mx-2">Learn More</a>
+    </div>
+</div>
+
+<section class="py-5 bg-darker text-center">
+    <div class="container">
+        <h2 class="section-title">What Awaits You</h2>
+        <div class="row mt-5">
+            <div class="col-md-4 mb-4">
+                <div class="card-game">
+                    <img src="{% static 'images/hero.png' %}" class="card-img-top mx-auto d-block mb-3" alt="Create Characters" style="width: 150px;">
+                    <h3>Create Heroes</h3>
+                    <p>Design your unique characters with diverse abilities and backstories. The only limit is your imagination!</p>
+                    <a href="{% url 'characters:characters_list' %}" class="btn btn-game-primary">Craft Your Hero</a>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card-game">
+                    <img src="{% static 'images/partner.png' %}" class="card-img-top mx-auto d-block mb-3" alt="Recruit Partners" style="width: 150px;">
+                    <h3>Recruit Partners</h3>
+                    <p>Enlist powerful allies to fight alongside your characters. Form unbreakable bonds and unleash devastating combos.</p>
+                    <a href="{% url 'partners:partners_list' %}" class="btn btn-game-primary">Find Your Partner</a>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card-game">
+                    <img src="{% static 'images/enemy.png' %}" class="card-img-top mx-auto d-block mb-3" alt="Battle Enemies" style="width: 150px;">
+                    <h3>Conquer Enemies</h3>
+                    <p>Face off against a multitude of foes, each with unique strengths and weaknesses. Master turn-based strategy!</p>
+                    <a href="{% url 'enemies:enemies_list' %}" class="btn btn-game-primary">Challenge Foes</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5 text-center bg-dark">
+    <div class="container">
+        <h2 class="section-title">Ready for Adventure?</h2>
+        <p class="lead mb-4">
+            Join thousands of players and embark on an unforgettable journey. The world of CreatorApp awaits your command!
+        </p>
+        <a href="{% url 'battle:character_selection' %}" class="btn btn-game-primary btn-lg">Begin Your Epic Tale Now!</a>
+    </div>
+</section>
+{% endblock %}

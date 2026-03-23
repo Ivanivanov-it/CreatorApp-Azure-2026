@@ -1,0 +1,85 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete {{ object|capfirst }} - Confirmation</title>
+    <!-- Bootstrap CSS from CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- Custom Game-like Styles -->
+    <style>
+        body {
+            background-color: #1a1a2e; /* Dark background for game feel */
+            color: #e0e0e0; /* Light text for contrast */
+            font-family: 'Arial', sans-serif; /* A simple, clear font */
+        }
+        .container-fluid {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .card-game-delete {
+            background-color: #2a2a4a; /* Slightly lighter dark background for the card */
+            border: 1px solid #4a4a6a;
+            border-radius: 15px;
+            padding: 3rem;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+        h1 {
+            color: #ff6b6b; /* Reddish color for delete warning */
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+        }
+        p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+        .btn-danger-custom {
+            background-color: #ff6b6b; /* Match h1 color */
+            border-color: #ff6b6b;
+            font-weight: bold;
+            padding: 0.8rem 2rem;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+        .btn-danger-custom:hover {
+            background-color: #ff8e8e;
+            border-color: #ff8e8e;
+        }
+        .btn-secondary-custom {
+            background-color: #4a4a6a;
+            border-color: #4a4a6a;
+            font-weight: bold;
+            padding: 0.8rem 2rem;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+        .btn-secondary-custom:hover {
+            background-color: #6a6a8a;
+            border-color: #6a6a8a;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid text-center">
+        <div class="card-game-delete">
+            <h1>Delete {{ object|capfirst }}</h1>
+            <p>Are you sure you want to delete "<strong>{{ object }}</strong>"? This action cannot be undone.</p>
+
+            <form method="post" class="d-inline-block me-3">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger-custom btn-lg">Yes, Delete</button>
+            </form>
+
+            <a href="javascript:history.back()" class="btn btn-secondary-custom btn-lg">Cancel</a>
+
+        </div>
+    </div>
+
+    <!-- Bootstrap Bundle with Popper from CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>
+

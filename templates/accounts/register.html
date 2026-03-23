@@ -1,0 +1,193 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Register | CreatorApp{% endblock %}
+
+{% block content %}
+<style>
+    body {
+        background-color: #1a1a2e;
+        color: #e0e0e0;
+    }
+
+    .register-container {
+        padding-top: 5rem;
+        padding-bottom: 5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 70vh;
+    }
+
+    .card-game {
+        background-color: #2a2a4a;
+        border: 2px solid #4a4a6a;
+        color: #e0e0e0;
+        padding: 2.5rem;
+        border-radius: 12px;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+        width: 100%;
+        max-width: 500px;
+        transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+
+    .card-game:hover {
+        transform: scale(1.01);
+        border-color: #8be9fd;
+    }
+
+    .register-title {
+        color: #8be9fd;
+        font-size: 2.5rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        margin-bottom: 2rem;
+        text-align: center;
+        text-shadow: 0 0 10px rgba(139, 233, 253, 0.3);
+    }
+
+    .form-label {
+        color: #bd93f9;
+        font-weight: 600;
+        letter-spacing: 1px;
+        margin-bottom: 0.5rem;
+        display: block;
+    }
+
+    /* Target Django form fields */
+    input[type="text"], 
+    input[type="password"], 
+    input[type="email"],
+    input[type="number"],
+    select,
+    textarea {
+        width: 100%;
+        background-color: #1a1a2e;
+        border: 1px solid #4a4a6a;
+        color: #e0e0e0;
+        padding: 0.75rem 1rem;
+        border-radius: 6px;
+        margin-bottom: 0.5rem;
+        transition: all 0.3s ease;
+    }
+
+    input:focus, select:focus, textarea:focus {
+        background-color: #2a2a4a;
+        border-color: #8be9fd;
+        color: #fff;
+        box-shadow: 0 0 15px rgba(139, 233, 253, 0.2);
+        outline: none;
+    }
+
+    .helptext {
+        display: block;
+        font-size: 0.8rem;
+        color: #6272a4;
+        margin-bottom: 1rem;
+    }
+
+    .errorlist {
+        color: #ff5555;
+        background: rgba(255, 85, 85, 0.1);
+        border-left: 4px solid #ff5555;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        margin-bottom: 1rem;
+        list-style: none;
+        font-size: 0.9rem;
+    }
+
+    .btn-game-primary {
+        background-color: #ff79c6;
+        border: none;
+        color: white;
+        font-weight: bold;
+        padding: 1rem;
+        border-radius: 8px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(255, 121, 198, 0.3);
+        width: 100%;
+    }
+
+    .btn-game-primary:hover {
+        background-color: #ff92d0;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(255, 121, 198, 0.5);
+    }
+
+    .btn-game-secondary {
+        background-color: #bd93f9;
+        border: none;
+        color: white;
+        font-weight: bold;
+        padding: 1rem;
+        border-radius: 8px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: all 0.3s ease;
+        text-align: center;
+        text-decoration: none;
+        display: block;
+        margin-top: 1rem;
+        width: 100%;
+    }
+
+    .btn-game-secondary:hover {
+        background-color: #c9a7fa;
+        color: white;
+    }
+
+    .register-footer {
+        text-align: center;
+        margin-top: 2rem;
+        color: #6272a4;
+        font-size: 0.9rem;
+    }
+
+    .register-footer a {
+        color: #8be9fd;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    .register-footer a:hover {
+        color: #50fa7b;
+    }
+</style>
+
+<div class="register-container">
+    <div class="card-game">
+        <h2 class="register-title">New Hero</h2>
+
+        <form method="post">
+            {% csrf_token %}
+            
+            {% for field in form %}
+                <div class="mb-3">
+                    <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                    {{ field }}
+                    {% if field.help_text %}
+                        <small class="helptext">{{ field.help_text|safe }}</small>
+                    {% endif %}
+                    {% if field.errors %}
+                        {{ field.errors }}
+                    {% endif %}
+                </div>
+            {% endfor %}
+
+            <div class="mt-4">
+                <button type="submit" class="btn btn-game-primary">Forge Account</button>
+                <a href="{% url 'account:login' %}" class="btn btn-game-secondary">Already a Member?</a>
+            </div>
+        </form>
+
+        <div class="register-footer">
+            <p>By forging an account, you agree to the <a href="{% url 'contacts:wip' %}">Rules of Engagement</a>.</p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

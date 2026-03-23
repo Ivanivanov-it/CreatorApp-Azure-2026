@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}Maintenance{% endblock %}
+
+{% block content %}
+<div class="container d-flex align-items-center justify-content-center" style="min-height: 70vh;">
+    <div class="card-game text-center p-5 shadow-lg border-2">
+        <div class="mb-4">
+            <i class="bi bi-gear-fill text-warning" style="font-size: 5rem; animation: spin 4s linear infinite;"></i>
+        </div>
+        <h1 class="display-4 fw-bold mb-3" style="color: #ff79c6; letter-spacing: 2px;">SYSTEM UPDATE</h1>
+        <hr class="my-4" style="border-top: 2px solid #4a4a6a; opacity: 1;">
+        <p class="lead fs-3 mb-4">The app is under maintenance.</p>
+        <p class="text-muted">We are currently upgrading our systems to provide a better experience. <br> Please check back soon!</p>
+        
+        <div class="mt-5">
+            <div class="spinner-grow text-info mx-1" role="status" style="width: 0.75rem; height: 0.75rem;"></div>
+            <div class="spinner-grow text-info mx-1" role="status" style="width: 0.75rem; height: 0.75rem; animation-delay: 0.2s;"></div>
+            <div class="spinner-grow text-info mx-1" role="status" style="width: 0.75rem; height: 0.75rem; animation-delay: 0.4s;"></div>
+        </div>
+    </div>
+</div>
+
+<style>
+    @keyframes spin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+    }
+    body {
+        background-color: #1a1a2e;
+    }
+</style>
+{% endblock %}

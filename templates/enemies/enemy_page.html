@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% load custom_tags %}
+{% load static %}
+
+{% block content %}
+<style>
+    body {
+        background-color: #1a1a2e;
+        color: #e0e0e0;
+    }
+    .section-title {
+        font-size: 2.5rem;
+        color: #8be9fd;
+        margin-bottom: 1rem;
+        text-shadow: 0 0 10px rgba(139, 233, 253, 0.6);
+    }
+    .card-game {
+        background-color: #2a2a4a;
+        border: 1px solid #3a3a5a;
+        border-radius: 0.5rem;
+        padding: 2.5rem;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    }
+    .btn-game-primary, .btn-game-danger {
+        background-color: #8be9fd;
+        border-color: #8be9fd;
+        color: #1a1a2e;
+        padding: 0.75rem 2rem;
+        font-size: 1.1rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        border-radius: 0.3rem;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-block;
+    }
+    .btn-game-primary:hover, .btn-game-danger:hover {
+        transform: translateY(-2px);
+    }
+    .btn-game-primary:hover {
+        background-color: #67d0ed;
+        border-color: #67d0ed;
+        box-shadow: 0 0 15px rgba(139, 233, 253, 0.8);
+    }
+    .btn-game-danger { background-color: #ff5555; border-color: #ff5555; }
+    .btn-game-danger:hover { background-color: #ff7777; border-color: #ff7777; box-shadow: 0 0 15px rgba(255, 85, 85, 0.8); }
+
+    .stat-badge {
+        padding: 0.5em 1em;
+        border-radius: 0.25rem;
+        font-weight: bold;
+        color: #1a1a2e;
+    }
+    .stat-badge-atk { background-color: #ff6b6b; } /* Fiery Red/Orange */
+    .stat-badge-def { background-color: #4db8ff; } /* Sturdy Blue */
+    .stat-badge-hp { background-color: #51cf66; }  /* Vibrant Green */
+    .stat-badge-type { background-color: #9775fa; } /* Distinct Purple */
+    .stat-badge-weakness { background-color: #ffcc00; } /* Cautionary Yellow */
+</style>
+
+<div class="container my-5">
+    <div class="card-game">
+        <div class="row">
+            <div class="col-md-4 text-center">
+                {% if enemy.image_url %}
+                <img src="{{ enemy.image_url }}" alt="{{ enemy.name }}" class="img-fluid rounded-circle mb-3" style="border: 4px solid #ff5555; width: 250px; height: 250px; object-fit: cover;">
+                {% else %}
+                <img src="{% static 'images/enemy.png' %}" alt="{{ enemy.name }}" class="img-fluid rounded-circle mb-3" style="border: 4px solid #ff5555; width: 250px; height: 250px; object-fit: cover;">
+                {% endif %}
+            </div>
+            <div class="col-md-8">
+                <h1 class="section-title mb-2">{{ enemy.name }}</h1>
+                <h2 class="h4 text-muted mb-4">{{ enemy.title }}</h2>
+
+                <p class="lead">{{ enemy.description }}</p>
+
+                <div class="d-flex align-items-center mb-3">
+                    <span class="fw-bold me-3">Type:</span>
+                    <span class="stat-badge stat-badge-type">{{ enemy.type }}</span>
+                </div>
+
+                {% show_stats enemy %}
+
+                <div class="mb-4">
+                    <span class="fw-bold me-2">Weakness:</span>
+                    {% for weakness in enemy.weakness.all %}
+                    <span class="stat-badge stat-badge-weakness me-1">{{ weakness.role | lower | capfirst }}</span>
+                    {% endfor %}
+                </div>
+
+                <p class="card-text"><small class="text-white-50">Created at: {{ enemy.created_at }}</small></p>
+
+            {% if can_modify %}
+                <div class="mt-4">
+                    <a href="{% url 'enemies:edit_enemy' enemy.pk %}" class="btn-game-primary me-2">Edit</a>
+                    <a href="{% url 'enemies:delete_enemy' enemy.pk %}" class="btn-game-danger">Delete</a>
+                </div>
+            {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

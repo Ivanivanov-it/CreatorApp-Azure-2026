@@ -1,0 +1,188 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Change Email | CreatorApp{% endblock %}
+
+{% block content %}
+<style>
+    body {
+        background-color: #1a1a2e; /* Dark background for game feel */
+        color: #e0e0e0; /* Light text for contrast */
+    }
+
+    .login-container {
+        padding-top: 5rem;
+        padding-bottom: 5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 70vh;
+    }
+
+    .card-game {
+        background-color: #2a2a4a;
+        border: 2px solid #4a4a6a;
+        color: #e0e0e0;
+        padding: 2.5rem;
+        border-radius: 12px;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+        width: 100%;
+        max-width: 450px;
+        transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+
+    .card-game:hover {
+        transform: scale(1.02);
+        border-color: #8be9fd;
+    }
+
+    .login-title {
+        color: #8be9fd;
+        font-size: 2.5rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        margin-bottom: 2rem;
+        text-align: center;
+        text-shadow: 0 0 10px rgba(139, 233, 253, 0.3);
+    }
+
+    .form-label {
+        color: #bd93f9;
+        font-weight: 600;
+        letter-spacing: 1px;
+        margin-bottom: 0.5rem;
+        display: block;
+    }
+
+    .form-control {
+        background-color: #1a1a2e;
+        border: 1px solid #4a4a6a;
+        color: #e0e0e0;
+        padding: 0.75rem 1rem;
+        border-radius: 6px;
+        transition: all 0.3s ease;
+    }
+
+    .form-control:focus {
+        background-color: #2a2a4a;
+        border-color: #8be9fd;
+        color: #fff;
+        box-shadow: 0 0 15px rgba(139, 233, 253, 0.2);
+        outline: none;
+    }
+
+    .error-list {
+        color: #ff5555;
+        background: rgba(255, 85, 85, 0.1);
+        border-left: 4px solid #ff5555;
+        padding: 1rem;
+        border-radius: 4px;
+        margin-bottom: 1.5rem;
+        list-style: none;
+    }
+
+    .btn-game-primary {
+        background-color: #ff79c6;
+        border: none;
+        color: white;
+        font-weight: bold;
+        padding: 1rem;
+        border-radius: 8px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(255, 121, 198, 0.3);
+        text-align: center;
+        width: 100%;
+        display: block;
+        margin-bottom: 1rem;
+    }
+
+    .btn-game-primary:hover {
+        background-color: #ff92d0;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(255, 121, 198, 0.5);
+        color: white;
+    }
+
+    .btn-game-secondary {
+        background-color: #bd93f9;
+        border: none;
+        color: white;
+        font-weight: bold;
+        padding: 1rem;
+        border-radius: 8px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: all 0.3s ease;
+        text-align: center;
+        text-decoration: none;
+        display: block;
+        width: 100%;
+    }
+
+    .btn-game-secondary:hover {
+        background-color: #c9a7fa;
+        color: white;
+    }
+
+    /* Target Django form fields */
+    input[type="text"], input[type="email"], input[type="password"] {
+        width: 100%;
+        background-color: #1a1a2e;
+        border: 1px solid #4a4a6a;
+        color: #e0e0e0;
+        padding: 0.75rem 1rem;
+        border-radius: 6px;
+        margin-bottom: 1rem;
+    }
+    
+    input:focus {
+        border-color: #8be9fd;
+        outline: none;
+        box-shadow: 0 0 10px rgba(139, 233, 253, 0.2);
+    }
+
+    .form-help {
+        color: #6272a4;
+        font-size: 0.85rem;
+        margin-top: -0.5rem;
+        margin-bottom: 1rem;
+        display: block;
+    }
+</style>
+
+<div class="login-container">
+    <div class="card-game">
+        <h2 class="login-title">Change Email</h2>
+
+        {% if form.errors %}
+            <div class="error-list">
+                Please correct the errors below.
+                {{ form.errors }}
+            </div>
+        {% endif %}
+
+        <form method="post">
+            {% csrf_token %}
+            
+            {% for field in form %}
+                <div class="mb-3">
+                    <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                    {{ field }}
+                    {% if field.help_text %}
+                        <span class="form-help">{{ field.help_text }}</span>
+                    {% endif %}
+                </div>
+            {% endfor %}
+
+            <div class="mt-4">
+                <button type="submit" class="btn btn-game-primary">Update Email</button>
+                <a href="{% url 'account:profile' %}" class="btn btn-game-secondary">Return to Profile</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

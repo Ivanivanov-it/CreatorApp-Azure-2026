@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h1><span class="text-partner-orange">Delete {{ partner.name }}</span></h1>
+        </div>
+        <div class="card-body">
+            <form method="POST">
+                {% csrf_token %}
+                <p class="text-game-light">Are you sure you want to delete the partner "{{ partner.name }}"?</p>
+                <button type="submit" class="btn btn-danger">Delete</button>
+                <a href="{% url 'partners:partner_detail' partner.pk %}" class="btn btn-secondary">Cancel</a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

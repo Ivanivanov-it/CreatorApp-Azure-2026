@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Page Not Found - 404{% endblock %}
+
+{% block content %}
+<style>
+    body {
+        background-color: #1a1a2e; /* Dark background for game feel */
+        color: #e0e0e0; /* Light text for contrast */
+    }
+</style>
+<div class="d-flex align-items-center justify-content-center text-center py-5" style="min-height: calc(100vh - 150px);"> {# Adjusted min-height for header/footer space #}
+    <div class="container">
+        <h1 class="display-1 fw-bold text-danger">404</h1>
+        <p class="fs-3"> <span class="text-danger">Opps!</span> Page not found.</p>
+        <p class="lead">
+            The page you're looking for doesn't exist.
+        </p>
+        <a href="{% url 'characters:home' %}" class="btn btn-game-primary btn-lg mt-3">Go to Home</a>
+    </div>
+</div>
+{% endblock %}

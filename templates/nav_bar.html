@@ -1,0 +1,35 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark py-3">
+    <div class="container">
+        <a class="navbar-brand text-light fw-bold" href="{% url 'characters:home' %}">CreatorApp</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link text-info" href="{% url 'characters:characters_list' %}">Characters</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-info" href="{% url 'partners:partners_list' %}">Partners</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-info" href="{% url 'enemies:enemies_list' %}">Enemies</a>
+                </li>
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                    <a class="nav-link text-success" href="{% url 'account:profile' %}">Profile</a>
+                </li>
+                    <li class="nav-item">
+                        <form method="post" action="{% url 'account:logout' %}" class="d-inline">
+                            {% csrf_token %}
+                            <button type="submit" class="nav-link btn btn-link text-danger border-0" style="vertical-align: middle;">Logout</button>
+                        </form>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link text-warning" href="{% url 'account:login' %}">Login</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>

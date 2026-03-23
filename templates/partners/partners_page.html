@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    body {
+        background-color: #1a1a2e;
+        color: #e0e0e0;
+    }
+    .section-title {
+        font-size: 2.5rem;
+        color: #8be9fd;
+        margin-bottom: 1rem;
+        text-shadow: 0 0 10px rgba(139, 233, 253, 0.6);
+    }
+    .card-game {
+        background-color: #2a2a4a;
+        border: 1px solid #3a3a5a;
+        border-radius: 0.5rem;
+        padding: 1.5rem;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        height: 100%;
+    }
+    .card-game:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 0 25px rgba(139, 233, 253, 0.3);
+    }
+    .btn-game-primary {
+        background-color: #8be9fd;
+        border-color: #8be9fd;
+        color: #1a1a2e;
+        padding: 0.75rem 2rem;
+        font-size: 1.25rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        border-radius: 0.3rem;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-block;
+    }
+    .btn-game-primary:hover {
+        background-color: #67d0ed;
+        border-color: #67d0ed;
+        color: #1a1a2e;
+        box-shadow: 0 0 15px rgba(139, 233, 253, 0.8);
+        transform: translateY(-2px);
+    }
+    .card-title-link {
+        color: #8be9fd;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+    .card-title-link:hover {
+        color: #e0e0e0;
+    }
+</style>
+
+<div class="container mt-5">
+    <h2 class="section-title text-center mb-4">Our Partners</h2>
+    <p class="text-center text-white-50 mb-5">Collaborators in our creative journey.</p>
+
+    {% include 'search.html' %}
+
+    <div class="text-center mb-5">
+        <a href="{% url 'partners:create_partner' %}" class="btn-game-primary">Forge New Alliance</a>
+    </div>
+
+    <div class="row">
+        {% for partner in partners %}
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card-game text-center">
+                {% if partner.image_url %}
+                    <a href="{% url 'partners:partner_detail' partner.pk %}">
+                        <img src="{{ partner.image_url }}" class="rounded-circle mx-auto d-block mb-3" alt="{{ partner.name  }}" style="width: 200px; height: 200px; object-fit: cover; border: 3px solid #3a3a5a;">
+                    </a>
+                {% else %}
+                    <a href="{% url 'partners:partner_detail' partner.pk %}">
+                        <img src="{% static 'images/partner.png' %}" class="rounded-circle mx-auto d-block mb-3" alt="{{ partner.name }}" style="width: 200px; height: 200px; object-fit: cover; border: 3px solid #3a3a5a;">
+                    </a>                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title mb-2">
+                        <a href="{% url 'partners:partner_detail' partner.pk %}" class="card-title-link">
+                            {{ partner.name | capfirst }}
+                        </a>
+                    </h5>
+                    <h6 class="card-subtitle mb-3 text-muted">{{ partner.title | capfirst }}</h6>
+                    <p class="card-text small">{{ partner.description|truncatewords:20 }}</p>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+            <div class="col">
+                <p class="lead text-center">No partners found.</p>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

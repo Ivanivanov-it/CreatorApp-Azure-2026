@@ -1,0 +1,50 @@
+{% for field in form %}
+<div class="mb-3">
+    <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}
+    {% if field.label == 'Attack' %}
+    <i class="bi bi-info-circle-fill" data-bs-toggle="tooltip" data-bs-placement="right" title="Distribute up to 100 points between attack, defense and hp"></i>
+    {% endif %}
+
+    {% if field.label == 'Roles' %}
+    <i class="bi bi-info-circle-fill" data-bs-toggle="tooltip" data-bs-placement="right" title="Your character wll deal increased damage to enemies with those weaknesses"></i>
+    {% endif %}
+
+    {% if field.label == 'Type' %}
+    <i class="bi bi-info-circle-fill" data-bs-toggle="tooltip" data-bs-placement="right" title="Type will grant you different stats in battle"></i>
+    {% endif %}
+
+
+</label>
+    {% if field.field.widget.template_name == 'django/forms/widgets/checkbox_select.html' %}
+        <div id="{{ field.id_for_label }}">
+        {% for choice in field %}
+            <div class="form-check">
+                {{ choice.tag }}
+                <label class="form-check-label" for="{{ choice.id_for_label }}">{{ choice.choice_label }}</label>
+            </div>
+        {% endfor %}
+        </div>
+    {% elif field.field.widget.template_name == 'django/forms/widgets/radio.html' %}
+        <div id="{{ field.id_for_label }}">
+        {% for choice in field %}
+            <div class="form-check">
+                {{ choice.tag }}
+                <label class="form-check-label" for="{{ choice.id_for_label }}">{{ choice.choice_label }}</label>
+            </div>
+        {% endfor %}
+        </div>
+    {% else %}
+{#        <input type="{{ field.field.widget.input_type }}" name="{{ field.name }}" id="{{ field.id_for_label }}"#}
+{#               class="form-control"#}
+{#               {% if field.value %}value="{{ field.value }}"{% endif %}>#}
+         {{ field }}
+
+    {% endif %}
+    {% if field.help_text %}
+    <div class="form-text">{{ field.help_text }}</div>
+    {% endif %}
+    {% for error in field.errors %}
+    <div class="alert alert-danger mt-2">{{ error }}</div>
+    {% endfor %}
+</div>
+{% endfor %}

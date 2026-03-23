@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}No Permission | CreatorApp{% endblock %}
+
+{% block content %}
+<style>
+    body {
+        background-color: #1a1a2e;
+        color: #e0e0e0;
+    }
+
+    .login-container {
+        padding-top: 5rem;
+        padding-bottom: 5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 70vh;
+    }
+
+    .card-game {
+        background-color: #2a2a4a;
+        border: 2px solid #ff5555; /* Warning red border */
+        color: #e0e0e0;
+        padding: 2.5rem;
+        border-radius: 12px;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+        width: 100%;
+        max-width: 500px;
+        transition: transform 0.3s ease, border-color 0.3s ease;
+        text-align: center;
+    }
+
+    .card-game:hover {
+        transform: scale(1.02);
+        border-color: #ffb86c; /* Warning orange on hover */
+    }
+
+    .login-title {
+        color: #ff5555; /* Warning red */
+        font-size: 2.5rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-bottom: 2rem;
+        text-shadow: 0 0 10px rgba(255, 85, 85, 0.3);
+    }
+
+    .warning-text {
+        font-size: 1.25rem;
+        margin-bottom: 2.5rem;
+        color: #f8f8f2;
+        line-height: 1.6;
+        font-weight: 500;
+    }
+
+    .btn-game-primary {
+        background-color: #bd93f9;
+        border: none;
+        color: white;
+        font-weight: bold;
+        padding: 1rem;
+        border-radius: 8px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(189, 147, 249, 0.3);
+        text-decoration: none;
+        display: block;
+        width: 100%;
+    }
+
+    .btn-game-primary:hover {
+        background-color: #c9a7fa;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(189, 147, 249, 0.5);
+        color: white;
+    }
+
+    .icon-warning {
+        font-size: 5rem;
+        color: #ff5555;
+        margin-bottom: 1.5rem;
+    }
+</style>
+
+<div class="login-container">
+    <div class="card-game">
+        <div class="icon-warning">
+            <i class="bi bi-shield-lock-fill"></i>
+        </div>
+        <h2 class="login-title">Access Denied</h2>
+        <p class="warning-text">
+            You don't have permissions for this action.
+        </p>
+        <div class="d-grid">
+            <a href="{% url 'characters:home' %}" class="btn btn-game-primary">Return to Home</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,95 @@
+.form-errors {
+    background-color: #ffecec;
+    border-left: 4px solid #e63946;
+    color: #9b1c1c;
+    padding: 12px 16px;
+    margin-bottom: 16px;
+    border-radius: 6px;
+    font-size: 0.95rem;
+}
+
+.form-errors ul {
+    margin: 0;
+    padding-left: 18px;
+}
+
+.form-errors li {
+    list-style: disc;
+}
+
+.card {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+ .hero-section {
+
+        padding: 8rem 0;
+        color: white;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+    }
+    .hero-section h1 {
+        font-size: 4.5rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+    }
+    .hero-section p {
+        font-size: 1.5rem;
+        margin-bottom: 2rem;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .section-title {
+        font-size: 3rem;
+        font-weight: 700;
+        color: #e0e0e0;
+        margin-bottom: 2rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+    .card-game {
+        background-color: #2a2a4a;
+        border: 1px solid #4a4a6a;
+        color: #e0e0e0;
+        padding: 1.5rem;
+        border-radius: 8px;
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    }
+    .card-game:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    }
+    .card-game h3 {
+        color: #8be9fd; /* Light blue for headings */
+    }
+    .btn-game-primary {
+        background-color: #ff79c6; /* Pinkish purple */
+        border-color: #ff79c6;
+        color: white;
+        font-weight: bold;
+        padding: 0.8rem 2rem;
+        border-radius: 5px;
+        transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+    }
+    .btn-game-primary:hover {
+        background-color: #ff92d0;
+        border-color: #ff92d0;
+    }
+    .btn-game-secondary {
+        background-color: #bd93f9; /* Purple */
+        border-color: #bd93f9;
+        color: white;
+        font-weight: bold;
+        padding: 0.8rem 2rem;
+        border-radius: 5px;
+        transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+    }
+    .btn-game-secondary:hover {
+        background-color: #c9a7fa;
+        border-color: #c9a7fa;
+    }
