@@ -34,6 +34,10 @@ DEBUG = os.getenv("DEBUG") == "True"
 ALLOWED_HOSTS = [host for host in (os.getenv('ALLOWED_HOSTS') or "").split(',') if host]
 CSRF_TRUSTED_ORIGINS = [host for host in (os.getenv('CSRF_TRUSTED_ORIGINS') or "").split(',') if host]
 
+print("=== HOSTS DEBUG ===")
+print("ALLOWED_HOSTS:", ALLOWED_HOSTS)
+print("=====================")
+
 PROJECT_APPS = [
     "common",
     "characters",
