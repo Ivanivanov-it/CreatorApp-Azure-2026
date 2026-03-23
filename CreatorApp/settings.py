@@ -93,6 +93,14 @@ WSGI_APPLICATION = 'CreatorApp.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
+
+print("=== DB DEBUG ===")
+print("HOST:", os.environ.get('DB_HOST'))
+print("USER:", os.environ.get('DB_USER'))
+print("NAME:", os.environ.get('DB_NAME'))
+print("================")
+
+
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
@@ -107,11 +115,7 @@ DATABASES = {
     }
 }
 
-print("=== DB DEBUG ===")
-print("HOST:", os.environ.get('DB_HOST'))
-print("USER:", os.environ.get('DB_USER'))
-print("NAME:", os.environ.get('DB_NAME'))
-print("================")
+
 
 
 
