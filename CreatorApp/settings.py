@@ -46,7 +46,6 @@ PROJECT_APPS = [
     "contacts",
     "battle",
     "accounts",
-    "cloudinary"
 ]
 
 # Application definition
@@ -58,6 +57,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'cloudinary_storage',
+    'cloudinary'
 ] + PROJECT_APPS
 
 MIDDLEWARE = [
