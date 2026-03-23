@@ -31,7 +31,7 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("DEBUG") == "True"
 
-ALLOWED_HOSTS = [host for host in (os.getenv('ALLOWED_HOSTS') or "").split(',') if host] + ['creatorapp-cagtbxfsemaca3bd.spaincentral-01.azurewebsites.net','169.254.0.0/16']
+ALLOWED_HOSTS = [host for host in (os.getenv('ALLOWED_HOSTS') or "").split(',') if host]
 CSRF_TRUSTED_ORIGINS = [host for host in (os.getenv('CSRF_TRUSTED_ORIGINS') or "").split(',') if host]
 
 print("=== HOSTS DEBUG ===")
@@ -199,13 +199,6 @@ LOGIN_URL = 'account:login'
 MAINTENANCE = os.getenv("MAINTENANCE") == "True"
 
 #SECURIRY SETTINGS
-
-SECURE_SSL_REDIRECT = False
-SECURE_HSTS_SECONDS = 0
-SECURE_HSTS_INCLUDE_SUBDOMAINS = False
-SECURE_HSTS_PRELOAD = False
-SESSION_COOKIE_SECURE = False
-CSRF_COOKIE_SECURE = False
 
 # SECURE_SSL_REDIRECT = True
 # SECURE_HSTS_SECONDS = 31536000
