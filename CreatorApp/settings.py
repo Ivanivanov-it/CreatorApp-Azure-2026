@@ -32,7 +32,11 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 DEBUG = os.getenv("DEBUG") == "True"
 
 ALLOWED_HOSTS = [host for host in (os.getenv('ALLOWED_HOSTS') or "").split(',') if host]
-CSRF_TRUSTED_ORIGINS = [host for host in (os.getenv('CSRF_TRUSTED_ORIGINS') or "").split(',') if host]
+CSRF_TRUSTED_ORIGINS = [
+    f"https://{host.strip()}"
+    for host in (os.getenv("CSRF_TRUSTED_ORIGINS") or "").split(",")
+    if host.strip()
+]
 
 print("=== HOSTS DEBUG ===")
 print("ALLOWED_HOSTS:", ALLOWED_HOSTS)
