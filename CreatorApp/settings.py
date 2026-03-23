@@ -114,9 +114,9 @@ DATABASES = {
         "PASSWORD": os.getenv("DB_PASSWORD"),
         "HOST": os.getenv("DB_HOST"),
         "PORT": os.getenv("DB_PORT"),
-        'OPTIONS': {
-            'sslmode': 'require',
-        }
+        # 'OPTIONS': {
+        #     'sslmode': 'require',
+        # }
     }
 }
 
@@ -160,7 +160,7 @@ CLOUDINARY_STORAGE = {
     'API_SECRET': os.getenv('CLOUDINARY_SECRET_KEY'),
 }
 
-MEDIA_URL = '/media/'
+# MEDIA_URL = '/media/'
 
 
 

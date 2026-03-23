@@ -27,4 +27,4 @@ urlpatterns = [
     path('contact-us/',include('contacts.urls')),
     path('battle/',include('battle.urls')),
     path('accounts/', include('accounts.urls'))
-]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
