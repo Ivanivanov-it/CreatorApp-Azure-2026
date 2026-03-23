@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 from pathlib import Path
 from dotenv import load_dotenv
 import os
-
+import cloudinary
 
 
 load_dotenv()
@@ -34,9 +34,7 @@ DEBUG = os.getenv("DEBUG") == "True"
 ALLOWED_HOSTS = [host for host in (os.getenv('ALLOWED_HOSTS') or "").split(',') if host]
 CSRF_TRUSTED_ORIGINS = [host for host in (os.getenv('CSRF_TRUSTED_ORIGINS') or "").split(',') if host]
 
-print("=== HOSTS DEBUG ===")
-print("ALLOWED_HOSTS:", ALLOWED_HOSTS)
-print("=====================")
+
 
 PROJECT_APPS = [
     "common",
@@ -99,11 +97,7 @@ WSGI_APPLICATION = 'CreatorApp.wsgi.application'
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
 
-print("=== DB DEBUG ===")
-print("HOST:", os.environ.get('DB_HOST'))
-print("USER:", os.environ.get('DB_USER'))
-print("NAME:", os.environ.get('DB_NAME'))
-print("================")
+
 
 
 DATABASES = {
@@ -154,11 +148,19 @@ USE_I18N = True
 
 USE_TZ = True
 
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': os.getenv('CLOUDINARY_CLOUD_NAME'),
-    'API_KEY': os.getenv('CLOUDINARY_API_KEY'),
-    'API_SECRET': os.getenv('CLOUDINARY_SECRET_KEY'),
-}
+
+
+# CLOUDINARY_STORAGE = {
+#     'CLOUD_NAME': os.getenv('CLOUDINARY_CLOUD_NAME'),
+#     'API_KEY': os.getenv('CLOUDINARY_API_KEY'),
+#     'API_SECRET': os.getenv('CLOUDINARY_SECRET_KEY'),
+# }
+
+cloudinary.config(
+    cloud_name=os.getenv('CLOUDINARY_CLOUD_NAME'),
+    api_key=os.getenv('CLOUDINARY_API_KEY'),
+    api_secret=os.getenv('CLOUDINARY_SECRET_KEY'),
+)
 
 # MEDIA_URL = '/media/'
 
